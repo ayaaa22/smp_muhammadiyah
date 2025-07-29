@@ -1,87 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mazer Admin Dashboard</title>
+
+    <link rel="shortcut icon" href="{{ asset('assets/compiled/svg/favicon.svg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/compiled/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/compiled/css/app-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/compiled/css/auth.css') }}">
 </head>
-<body class="bg-light">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+<body>
+    <script src="{{ asset('assets/static/js/initTheme.js') }}"></script>
+    <div id="auth">
 
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
+        <div class="row h-100">
+            <div class="col-lg-5 col-12">
+                <div id="auth-left">
 
-            <div class="card">
-                <div class="card-header">Login</div>
+                    <div class="auth-logo mb-4">
+                        <a href="#"><img src="{{ asset('assets/compiled/svg/logo.svg') }}" alt="Logo"></a>
+                    </div>
 
-                <div class="card-body">
+                    <h1 class="auth-title">Log in</h1>
+                    <p class="auth-subtitle mb-5">Log in with your email and password.</p>
+
+                    <!-- Laravel session status -->
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <!-- Login form -->
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <!-- Email -->
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
+                        <div class="form-group position-relative has-icon-left mb-4">
                             <input
                                 type="email"
-                                class="form-control @error('email') is-invalid @enderror"
-                                id="email"
                                 name="email"
                                 value="{{ old('email') }}"
+                                class="form-control form-control-xl @error('email') is-invalid @enderror"
+                                placeholder="Email"
                                 required
                                 autofocus
-                                autocomplete="username"
                             >
+                            <div class="form-control-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
                             @error('email')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="text-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <!-- Password -->
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                        <div class="form-group position-relative has-icon-left mb-4">
                             <input
                                 type="password"
-                                class="form-control @error('password') is-invalid @enderror"
-                                id="password"
                                 name="password"
+                                class="form-control form-control-xl @error('password') is-invalid @enderror"
+                                placeholder="Password"
                                 required
-                                autocomplete="current-password"
                             >
+                            <div class="form-control-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
                             @error('password')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="text-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <!-- Remember Me -->
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label" for="remember">Remember Me</label>
+                        <!-- Remember me -->
+                        <div class="form-check form-check-lg d-flex align-items-center mb-4">
+                            <input class="form-check-input me-2" type="checkbox" name="remember" id="remember">
+                            <label class="form-check-label text-gray-600" for="remember">
+                                Keep me logged in
+                            </label>
                         </div>
 
-                        <!-- Actions -->
-                        <div class="d-flex justify-content-between align-items-center">
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" class="text-decoration-none">Forgot your password?</a>
-                            @endif
-
-                            <button type="submit" class="btn btn-primary">
-                                Log in
-                            </button>
-                        </div>
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-3">Log in</button>
                     </form>
                 </div>
             </div>
 
+            <div class="col-lg-7 d-none d-lg-block">
+                <div id="auth-right">
+                    <!-- You can add a background image or some branding here -->
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
+    </div>
 </body>
+
 </html>
