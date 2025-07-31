@@ -51,51 +51,51 @@
                     @endphp
 
                     @if($role === 'admin')
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->url('/kepsek/dashboard.*') ? 'active' : '' }}">
+                            <a href="{{ url('/kepsek/dashboard') }}" class="sidebar-link">
                                 <i class="bi bi-speedometer2"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-person-check"></i>
                                 <span>Presensi</span>
                             </a>
                         </li>
-                        <li class="sidebar-title">Home Menu</li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-title">Mainy Menu</li>
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-database"></i>
                                 <span>Master Data</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-calendar2-plus"></i>
                                 <span>Pengajuan Cuti</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-suitcase-lg"></i>
                                 <span>Surat Tugas</span>
                             </a>
                         </li>
                         <li class="sidebar-title">Pengaturan</li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-people"></i>
                                 <span>Manajemen Pengguna</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-gear"></i>
                                 <span>Pengaturan Aplikasi</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-info-circle"></i>
                                 <span>Tentang Aplikasi</span>
@@ -103,58 +103,58 @@
                         </li>
 
                     @elseif($role === 'pegawai')
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('/pegawai/dashboard.*') ? 'active' : '' }}">
                             <a href="{{ url('/pegawai/dashboard') }}" class="sidebar-link">
                                 <i class="bi bi-speedometer2"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-person-check"></i>
                                 <span>Presensi</span>
                             </a>
                         </li>
-                        <li class="sidebar-title">Home Menu</li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-title">Main Menu</li>
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-database"></i>
                                 <span>Master Data</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-calendar2-plus"></i>
                                 <span>Pengajuan Cuti</span>
                             </a>
                         </li>
                     @elseif($role === 'kepsek')
-                        <li class="sidebar-item">
-                            <a href="{{ url('/kepsek/dashboard') }}" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->url('/kepsek/dashboard.*') ? 'active' : '' }}">
+                            <a href="{{ url('/kepsek/dashboard') }}"class="sidebar-link">
                                 <i class="bi bi-speedometer2"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
+                            <a href="#" class="sidebar-lin {{ request()->url('#.*') ? 'active' : '' }}">
                                 <i class="bi bi-person-check"></i>
                                 <span>Presensi</span>
                             </a>
                         </li>
-                        <li class="sidebar-title">Home Menu</li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-title">Main Menu</li>
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-database"></i>
                                 <span>Master Data</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-calendar2-plus"></i>
                                 <span>Pengajuan Cuti</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item {{ request()->url('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-suitcase-lg"></i>
                                 <span>Surat Tugas</span>
