@@ -106,7 +106,7 @@
                         <li class="sidebar-item">
                             <a href="{{ url('/pegawai/dashboard') }}" class="sidebar-link">
                                 <i class="bi bi-speedometer2"></i>
-                                <span>Pegawai Dashboard</span>
+                                <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -131,8 +131,8 @@
                     @elseif($role === 'kepsek')
                         <li class="sidebar-item">
                             <a href="{{ url('/kepsek/dashboard') }}" class="sidebar-link">
-                                <i class="bi bi-person-video2"></i>
-                                <span>Direktur Dashboard</span>
+                                <i class="bi bi-speedometer2"></i>
+                                <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
