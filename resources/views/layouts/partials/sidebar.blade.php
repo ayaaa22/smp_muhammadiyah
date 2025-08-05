@@ -10,9 +10,13 @@
                         <div
                             style="font-size: 13px; font-weight: bold; color: #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                             <b>SMP MUHAMMADIYAH 4
-                            <br>PURWOHARJO</b>
+                                <br>PURWOHARJO</b>
                         </div>
                     </a>
+                    <div class="form-check form-switch fs-6">
+                        <input class="form-check-input me-0" type="checkbox" id="toggle-dark" style="cursor: pointer">
+                        <label class="form-check-label" for="toggle-dark"></label>
+                    </div>
 
                 </div>
 
@@ -32,12 +36,13 @@
                 @auth
                     @php
                         $role = auth()->user()->role;
-                        $isActiveMaster = request()->routeIs('jabatan.index') ||
+                        $isActiveMaster =
+                            request()->routeIs('jabatan.index') ||
                             request()->routeIs('pegawai.index') ||
-                            request()->routeIs('jenis-cuti.index')
+                            request()->routeIs('jenis-cuti.index');
                     @endphp
 
-                    @if($role === 'admin')
+                    @if ($role === 'admin')
                         <li class="sidebar-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                             <a href="{{ url('/admin/dashboard') }}" class="sidebar-link">
                                 <i class="bi bi-speedometer2"></i>
@@ -93,10 +98,10 @@
                                 <span>Manajemen Pengguna</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->routeIs('waktu.index') ? 'active' : '' }}">
+                            <a href="{{route('waktu.index')}}" class="sidebar-link">
                                 <i class="bi bi-gear"></i>
-                                <span>Pengaturan Aplikasi</span>
+                                <span>Pengaturan Waktu</span>
                             </a>
                         </li>
                         <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
@@ -105,7 +110,6 @@
                                 <span>Tentang Aplikasi</span>
                             </a>
                         </li>
-
                     @elseif($role === 'pegawai')
                         <li class="sidebar-item {{ request()->is('/pegawai/dashboard.*') ? 'active' : '' }}">
                             <a href="{{ url('/pegawai/dashboard') }}" class="sidebar-link">
