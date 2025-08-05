@@ -56,8 +56,8 @@
                             <input type="text" name="agama" class="form-control" value="{{ $pegawai->agama }}" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
                     <a href="{{ route('pegawai.index') }}" class="btn btn-secondary">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>
         </div>
