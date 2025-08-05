@@ -2,13 +2,6 @@
 
 @section('content')
 
-<style>
-    .table th,
-    .table td {
-        vertical-align: middle;
-    }
-</style>
-
 <div class="page-heading mb-4">
     <h3>Daftar Jenis Cuti</h3>
 </div>
