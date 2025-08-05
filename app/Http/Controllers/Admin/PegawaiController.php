@@ -61,7 +61,7 @@ class PegawaiController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $request->validate([  //validasi logis  
             'id_jabatan' => 'required',
             'id_user' => 'required',
             'nip' => 'required',
@@ -73,7 +73,7 @@ class PegawaiController extends Controller
         ]);
 
         $pegawai = Pegawai::findOrFail($id);
-        $pegawai->update($request->all());
+        $pegawai->update($request->all()); //pemprosesan data
 
         return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui.');
     }
