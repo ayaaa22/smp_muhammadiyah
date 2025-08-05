@@ -42,14 +42,13 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#modalEditJabatan{{ $jabatan->id }}">Edit</a>
+                                            <a class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+                                                data-bs-target="#modalEditJabatan{{ $jabatan->id }}"><i class="bi bi-pencil-square"></i></a>
                                             <form action="{{ route('jabatan.delete', $jabatan->id) }}" method="POST"
-                                                style="display:inline;"
-                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus jabatan ini?');">
+                                                style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete({{ $jabatan->id }})"><i class="bi bi-trash"></i></button>
                                             </form>
                                         </td>
                                         <!-- Modal Edit Jabatan -->

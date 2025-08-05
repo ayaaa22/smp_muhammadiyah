@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\SettingWaktu;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class SettingWaktuController extends Controller
             'hari' => 'required|in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu',
             'jam_masuk' => 'required|date_format:H:i',
             'jam_pulang' => 'required|date_format:H:i|after:jam_masuk',
-            'keterangan' => 'required|string|max:100'
+            'keterangan' => 'nullable|string|max:100'
         ]);
 
         SettingWaktu::create($request->only(['hari', 'jam_masuk', 'jam_pulang', 'keterangan']));
@@ -36,7 +37,7 @@ class SettingWaktuController extends Controller
             'hari' => 'required|in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,Minggu',
             'jam_masuk' => 'required|date_format:H:i',
             'jam_pulang' => 'required|date_format:H:i|after:jam_masuk',
-            'keterangan' => 'required|string|max:100'
+            'keterangan' => 'nullable|string|max:100'
         ]);
 
         $waktu = SettingWaktu::findOrFail($id);

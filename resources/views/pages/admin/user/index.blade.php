@@ -59,7 +59,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Yakin ingin menghapus user ini?')">
+                                                onclick="confirmDelete({{ $item->id }})">
                                                 Hapus
                                             </button>
                                         </form>
