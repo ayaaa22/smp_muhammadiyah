@@ -58,8 +58,8 @@
                             <input type="text" name="agama" class="form-control" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success">Simpan</button>
                     <a href="{{ route('pegawai.index') }}" class="btn btn-secondary">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>
         </div>
