@@ -31,11 +31,11 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="nip" class="form-label">NIP</label>
-                            <input type="text" name="nip" class="form-control" required>
+                            <input type="number" name="nip" class="form-control" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="npwp" class="form-label">NPWP</label>
-                            <input type="text" name="npwp" class="form-control" required>
+                            <input type="number" name="npwp" class="form-control" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="tempat_lahir" class="form-label">Tempat Lahir</label>

@@ -36,18 +36,19 @@
                                         <td>{{ $item->hari }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->jam_masuk)->format('H:i') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->jam_pulang)->format('H:i') }}</td>
-                                        <td>{{ $item->keterangan }}</td>
+                                        <td>{{ $item->keterangan ?? '-' }}</td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-outline-primary me-1"
                                                 data-bs-toggle="modal" data-bs-target="#modalEditWaktu{{ $item->id }}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <form action="{{ route('waktu.destroy', $item->id) }}" method="POST"
-                                                style="display:inline-block"
-                                                onsubmit="return confirm('Yakin ingin menghapus?')">
+                                            <form id="formDelete{{ $item->id }}"
+                                                action="{{ route('waktu.destroy', $item->id) }}" method="POST"
+                                                style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <button type="button" class="btn btn-sm btn-outline-danger"
+                                                    onclick="confirmDelete({{ $item->id }})">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>
@@ -96,7 +97,7 @@
                             <div class="mb-3">
                                 <label for="keterangan" class="form-label">Keterangan</label>
                                 <input type="text" name="keterangan" id="keterangan" class="form-control"
-                                    placeholder="Contoh: Masuk / Pulang" required>
+                                    placeholder="Contoh: Masuk / Pulang">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -149,7 +150,7 @@
                                 <div class="mb-3">
                                     <label for="keterangan{{ $item->id }}" class="form-label">Keterangan</label>
                                     <input type="text" name="keterangan" id="keterangan{{ $item->id }}"
-                                        class="form-control" value="{{ $item->keterangan }}" required>
+                                        class="form-control" value="{{ $item->keterangan }}">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -161,6 +162,5 @@
                 </div>
             </div>
         @endforeach
-
     </div>
 @endsection

@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\PegawaiController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Kepsek\PegawaiController as KepsekPegawaiController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingWaktuController;
+use App\Http\Controllers\Admin\SettingWaktuController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

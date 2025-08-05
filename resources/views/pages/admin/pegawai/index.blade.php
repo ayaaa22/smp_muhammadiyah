@@ -52,10 +52,10 @@
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <form action="{{ route('pegawai.delete', $item->id) }}" method="POST"
-                                                style="display:inline-block" onsubmit="return confirm('Yakin hapus?')">
+                                                style="display:inline-block">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete({{ $item->id }})">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>

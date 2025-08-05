@@ -42,10 +42,10 @@
                                     </a>
 
                                     <!-- Tombol Hapus -->
-                                    <form action="{{ route('jenis-cuti.delete', $item->id) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Yakin hapus?')">
+                                    <form action="{{ route('jenis-cuti.delete', $item->id) }}" method="POST" style="display:inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete({{ $item->id }})">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
