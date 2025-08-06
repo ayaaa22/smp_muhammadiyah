@@ -13,14 +13,18 @@ class SettingWaktu extends Model
 
     protected $fillable = [
         'hari',
-        'jam_masuk',
-        'jam_pulang',
+        'jam_masuk_mulai',
+        'jam_masuk_selesai',
+        'jam_pulang_mulai',
+        'jam_pulang_selesai',
         'keterangan',
     ];
 
     protected $casts = [
-        'jam_masuk' => 'datetime:H:i',
-        'jam_pulang' => 'datetime:H:i',
+        'jam_masuk_mulai' => 'datetime:H:i',
+        'jam_masuk_selesai' => 'datetime:H:i',
+        'jam_pulang_mulai' => 'datetime:H:i',
+        'jam_pulang_selesai' => 'datetime:H:i',
     ];
 
     /**
@@ -37,6 +41,6 @@ class SettingWaktu extends Model
     public static function hariIni()
     {
         $hariIni = now()->translatedFormat('l'); // Contoh: Senin, Selasa, dst
-        return self::where('hari', $hariIni)->get();
+        return self::where('hari', $hariIni)->first();
     }
 }

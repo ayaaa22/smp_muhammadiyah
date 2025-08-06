@@ -3,10 +3,12 @@
 use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\JenisCutiController;
 use App\Http\Controllers\Admin\PegawaiController;
+use App\Http\Controllers\Admin\PresensiController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Kepsek\PegawaiController as KepsekPegawaiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\SettingWaktuController;
+use App\Http\Controllers\Pegawai\PresensiPegawaiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -49,6 +51,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/settingWaktu/store', [SettingWaktuController::class, 'store'])->name('waktu.store');
         Route::put('/settingWaktu/{id}', [SettingWaktuController::class, 'update'])->name('waktu.update');
         Route::delete('/settingWaktu/{id}', [SettingWaktuController::class, 'destroy'])->name('waktu.destroy');
+
+        // Presensi
+        Route::get('presensi', [PresensiController::class, 'index'])->name('presensi.index');
     });
 });
 
@@ -57,6 +62,13 @@ Route::middleware(['auth', 'role:pegawai'])->group(function () {
         Route::get('/dashboard', function () {
             return view('pages.pegawai.index');
         });
+
+        Route::get('/presensi', [PresensiPegawaiController::class, 'index'])->name('pegawai_presensi.index');
+        Route::get('/presensi/add', [PresensiPegawaiController::class, 'create'])->name('pegawai_presensi.add');
+        Route::post('/presensi', [PresensiPegawaiController::class, 'store'])->name('pegawai_presensi.store');
+        Route::get('/presensi/{id}/edit', [PresensiPegawaiController::class, 'edit'])->name('pegawai_presensi.edit');
+        Route::put('/presensi/{id}', [PresensiPegawaiController::class, 'update'])->name('pegawai_presensi.update');
+        Route::delete('/presensi/{id}', [PresensiPegawaiController::class, 'delete'])->name('pegawai_presensi.delete');
     });
 });
 
@@ -65,6 +77,8 @@ Route::middleware(['auth', 'role:kepsek'])->group(function () {
         Route::get('/dashboard', function () {
             return view('pages.kepsek.index');
         });
+
+        // Pegawai
         Route::get('/pegawai', [KepsekPegawaiController::class, 'index'])->name('kepsek-pegawai.index');
         Route::get('/pegawai/add', [KepsekPegawaiController::class, 'create'])->name('kepsek-pegawai.add');
         Route::post('/pegawai', [KepsekPegawaiController::class, 'store'])->name('kepsek-pegawai.store');

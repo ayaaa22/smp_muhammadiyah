@@ -34,8 +34,16 @@
                                     <tr class="text-center">
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->hari }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($item->jam_masuk)->format('H:i') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($item->jam_pulang)->format('H:i') }}</td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($item->jam_masuk_mulai)->format('H:i') }}
+                                            -
+                                            {{ \Carbon\Carbon::parse($item->jam_masuk_selesai)->format('H:i') }}
+                                        </td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($item->jam_pulang_mulai)->format('H:i') }}
+                                            -
+                                            {{ \Carbon\Carbon::parse($item->jam_pulang_selesai)->format('H:i') }}
+                                        </td>
                                         <td>{{ $item->keterangan ?? '-' }}</td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-outline-primary me-1"
@@ -87,12 +95,20 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="jam_masuk" class="form-label">Jam Masuk</label>
-                                <input type="time" name="jam_masuk" id="jam_masuk" class="form-control" required>
+                                <label class="form-label">Jam Masuk</label>
+                                <div class="input-group">
+                                    <input type="time" name="jam_masuk_mulai" class="form-control" required>
+                                    <span class="input-group-text">s.d</span>
+                                    <input type="time" name="jam_masuk_selesai" class="form-control" required>
+                                </div>
                             </div>
                             <div class="mb-3">
-                                <label for="jam_pulang" class="form-label">Jam Pulang</label>
-                                <input type="time" name="jam_pulang" id="jam_pulang" class="form-control" required>
+                                <label class="form-label">Jam Pulang</label>
+                                <div class="input-group">
+                                    <input type="time" name="jam_pulang_mulai" class="form-control" required>
+                                    <span class="input-group-text">s.d</span>
+                                    <input type="time" name="jam_pulang_selesai" class="form-control" required>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="keterangan" class="form-label">Keterangan</label>
@@ -136,16 +152,28 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="jam_masuk{{ $item->id }}" class="form-label">Jam Masuk</label>
-                                    <input type="time" name="jam_masuk" id="jam_masuk{{ $item->id }}"
-                                        class="form-control"
-                                        value="{{ \Carbon\Carbon::parse($item->jam_masuk)->format('H:i') }}" required>
+                                    <label class="form-label">Jam Masuk</label>
+                                    <div class="input-group">
+                                        <input type="time" name="jam_masuk_mulai" class="form-control"
+                                            value="{{ \Carbon\Carbon::parse($item->jam_masuk_mulai)->format('H:i') }}"
+                                            required>
+                                        <span class="input-group-text">s.d</span>
+                                        <input type="time" name="jam_masuk_selesai" class="form-control"
+                                            value="{{ \Carbon\Carbon::parse($item->jam_masuk_selesai)->format('H:i') }}"
+                                            required>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="jam_pulang{{ $item->id }}" class="form-label">Jam Pulang</label>
-                                    <input type="time" name="jam_pulang" id="jam_pulang{{ $item->id }}"
-                                        class="form-control"
-                                        value="{{ \Carbon\Carbon::parse($item->jam_pulang)->format('H:i') }}" required>
+                                    <label class="form-label">Jam Pulang</label>
+                                    <div class="input-group">
+                                        <input type="time" name="jam_pulang_mulai" class="form-control"
+                                            value="{{ \Carbon\Carbon::parse($item->jam_pulang_mulai)->format('H:i') }}"
+                                            required>
+                                        <span class="input-group-text">s.d</span>
+                                        <input type="time" name="jam_pulang_selesai" class="form-control"
+                                            value="{{ \Carbon\Carbon::parse($item->jam_pulang_selesai)->format('H:i') }}"
+                                            required>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="keterangan{{ $item->id }}" class="form-label">Keterangan</label>

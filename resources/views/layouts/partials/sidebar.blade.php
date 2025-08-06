@@ -49,8 +49,8 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->routeIs('.*') ? 'active' : '' }}">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->routeIs('presensi.index') ? 'active' : '' }}">
+                            <a href="{{route('presensi.index')}}" class="sidebar-link">
                                 <i class="bi bi-person-check"></i>
                                 <span>Presensi</span>
                             </a>
@@ -111,14 +111,14 @@
                             </a>
                         </li>
                     @elseif($role === 'pegawai')
-                        <li class="sidebar-item {{ request()->is('/pegawai/dashboard.*') ? 'active' : '' }}">
+                        <li class="sidebar-item {{ request()->is('pegawai/dashboard') ? 'active' : '' }}">
                             <a href="{{ url('/pegawai/dashboard') }}" class="sidebar-link">
                                 <i class="bi bi-speedometer2"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->routeIs('pegawai_presensi.index') ? 'active' : '' }}">
+                            <a href="{{route('pegawai_presensi.index')}}" class="sidebar-link">
                                 <i class="bi bi-person-check"></i>
                                 <span>Presensi</span>
                             </a>
