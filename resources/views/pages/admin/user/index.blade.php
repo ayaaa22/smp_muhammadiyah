@@ -59,7 +59,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger"
-                                                onclick="confirmDelete({{ $item->id }})">
+                                                onclick="confirmDelete({{ $user->id }})">
                                                 Hapus
                                             </button>
                                         </form>

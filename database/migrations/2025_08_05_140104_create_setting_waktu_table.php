@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('setting_waktu', function (Blueprint $table) {
             $table->id();
             $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
-            $table->time('jam_masuk');
-            $table->time('jam_pulang');
+            $table->time('jam_masuk_mulai');
+            $table->time('jam_masuk_selesai');
+            $table->time('jam_pulang_mulai');
+            $table->time('jam_pulang_selesai');
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });
