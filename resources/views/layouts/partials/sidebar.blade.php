@@ -55,6 +55,12 @@
                                 <span>Presensi</span>
                             </a>
                         </li>
+                        <li class="sidebar-item {{ request()->routeIs('kehadiran.index') ? 'active' : '' }}">
+                            <a href="{{route('kehadiran.index')}}" class="sidebar-link">
+                                <i class="bi bi-person-lines-fill"></i>
+                                <span>Rekap Kehadiran</span>
+                            </a>
+                        </li>
                         <li class="sidebar-title">Main Menu</li>
                         <li class="sidebar-item has-sub {{ $isActiveMaster ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
@@ -124,12 +130,6 @@
                             </a>
                         </li>
                         <li class="sidebar-title">Main Menu</li>
-                        <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
-                            <a href="#" class="sidebar-link">
-                                <i class="bi bi-database"></i>
-                                <span>Master Data</span>
-                            </a>
-                        </li>
                         <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-calendar2-plus"></i>

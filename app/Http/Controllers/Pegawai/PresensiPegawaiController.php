@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Pegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Presensi;
+use App\Models\RekapKehadiran;
 use App\Models\SettingWaktu;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PresensiPegawaiController extends Controller
 {
@@ -44,7 +46,7 @@ class PresensiPegawaiController extends Controller
             'sudahPresensiPulang' => $sudahPresensiPulang,
         ]);
     }
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -56,7 +58,7 @@ class PresensiPegawaiController extends Controller
         $pegawaiId = Auth::user()->pegawai->id;
         $tanggal = Carbon::today()->toDateString();
         $jenis = $request->jenis;
-        $hariIni = Carbon::now()->translatedFormat('l'); // 'Senin', 'Selasa', dst.
+        $hariIni = Carbon::now()->translatedFormat('l');
 
         $sudahPresensi = Presensi::where('id_pegawai', $pegawaiId)
             ->where('jenis', $jenis)
@@ -93,16 +95,38 @@ class PresensiPegawaiController extends Controller
             }
         }
 
-        // Simpan presensi
-        Presensi::create([
-            'id_pegawai' => $pegawaiId,
-            'tanggal' => $tanggal,
-            'jenis' => $jenis,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'waktu' => now(),
-        ]);
+        try {
+            DB::transaction(function () use ($pegawaiId, $tanggal, $jenis, $now, $request) {
+                // Simpan presensi
+                Presensi::create([
+                    'id_pegawai' => $pegawaiId,
+                    'tanggal' => $tanggal,
+                    'jenis' => $jenis,
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
+                    'waktu' => now(),
+                ]);
 
-        return back()->with('success', 'Presensi ' . $jenis . ' berhasil disimpan.');
+                // Update atau buat rekap kehadiran
+                $rekap = RekapKehadiran::firstOrNew([
+                    'id_pegawai' => $pegawaiId,
+                    'tanggal' => $tanggal,
+                ]);
+
+                if ($jenis === 'datang') {
+                    $rekap->jam_datang = $now;
+                    $rekap->status = $rekap->status ?? 'hadir';
+                } else {
+                    $rekap->jam_pulang = $now;
+                    $rekap->status = $rekap->status ?? 'hadir';
+                }
+
+                $rekap->save();
+            });
+
+            return back()->with('success', 'Presensi ' . $jenis . ' berhasil disimpan.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Terjadi kesalahan saat menyimpan presensi: ' . $e->getMessage());
+        }
     }
 }
