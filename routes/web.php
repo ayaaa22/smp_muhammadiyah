@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\JenisCutiController;
 use App\Http\Controllers\Admin\PegawaiController;
 use App\Http\Controllers\Admin\PresensiController;
+use App\Http\Controllers\Admin\RekapKehadiranController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Kepsek\PegawaiController as KepsekPegawaiController;
 use App\Http\Controllers\ProfileController;
@@ -53,7 +54,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::delete('/settingWaktu/{id}', [SettingWaktuController::class, 'destroy'])->name('waktu.destroy');
 
         // Presensi
-        Route::get('presensi', [PresensiController::class, 'index'])->name('presensi.index');
+        Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi.index');
+        
+        // Rekap Kehadiran
+        Route::get('/rekap-kehadiran', [RekapKehadiranController::class, 'index'])->name('kehadiran.index');
+
     });
 });
 
