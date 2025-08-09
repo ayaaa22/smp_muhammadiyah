@@ -85,8 +85,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->routeIs('cuti.admin.index') ? 'active' : '' }}">
+                            <a href="{{route('cuti.admin.index')}}" class="sidebar-link">
                                 <i class="bi bi-calendar2-plus"></i>
                                 <span>Pengajuan Cuti</span>
                             </a>
@@ -123,15 +123,15 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
+                        <li class="sidebar-title">Main Menu</li>
                         <li class="sidebar-item {{ request()->routeIs('pegawai_presensi.index') ? 'active' : '' }}">
                             <a href="{{route('pegawai_presensi.index')}}" class="sidebar-link">
                                 <i class="bi bi-person-check"></i>
                                 <span>Presensi</span>
                             </a>
                         </li>
-                        <li class="sidebar-title">Main Menu</li>
-                        <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->routeIs('cuti.pegawai.index') ? 'active' : '' }}">
+                            <a href="{{route('cuti.pegawai.index')}}" class="sidebar-link">
                                 <i class="bi bi-calendar2-plus"></i>
                                 <span>Pengajuan Cuti</span>
                             </a>
@@ -156,8 +156,8 @@
                                 <span>Master Data</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->routeIs('#.*') ? 'active' : '' }}">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ request()->routeIs('cuti.kepsek.index') ? 'active' : '' }}">
+                            <a href="{{route('cuti.kepsek.index')}}" class="sidebar-link">
                                 <i class="bi bi-calendar2-plus"></i>
                                 <span>Pengajuan Cuti</span>
                             </a>
