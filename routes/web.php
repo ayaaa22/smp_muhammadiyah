@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Kepsek\PegawaiController as KepsekPegawaiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\SettingWaktuController;
+use App\Http\Controllers\Pegawai\PengajuanCutiController;
+use App\Http\Controllers\Admin\PengajuanCutiController as AdminPengajuanCutiController;
+use App\Http\Controllers\Kepsek\PengajuanCutiController as KepsekCutiController;
 use App\Http\Controllers\Pegawai\PresensiPegawaiController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,10 +58,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         // Presensi
         Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi.index');
-        
+
         // Rekap Kehadiran
         Route::get('/rekap-kehadiran', [RekapKehadiranController::class, 'index'])->name('kehadiran.index');
 
+        // Pengajuan Cuti
+        Route::get('/cuti', [AdminPengajuanCutiController::class, 'index'])->name('cuti.admin.index');
+        Route::post('/cuti/{id}/validasi', [AdminPengajuanCutiController::class, 'validasi'])->name('cuti.admin.validasi');
+        Route::post('/cuti/{id}/tolak', [AdminPengajuanCutiController::class, 'tolak'])->name('cuti.admin.tolak');
     });
 });
 
@@ -68,12 +75,18 @@ Route::middleware(['auth', 'role:pegawai'])->group(function () {
             return view('pages.pegawai.index');
         });
 
+        // Presensi 
         Route::get('/presensi', [PresensiPegawaiController::class, 'index'])->name('pegawai_presensi.index');
         Route::get('/presensi/add', [PresensiPegawaiController::class, 'create'])->name('pegawai_presensi.add');
         Route::post('/presensi', [PresensiPegawaiController::class, 'store'])->name('pegawai_presensi.store');
         Route::get('/presensi/{id}/edit', [PresensiPegawaiController::class, 'edit'])->name('pegawai_presensi.edit');
         Route::put('/presensi/{id}', [PresensiPegawaiController::class, 'update'])->name('pegawai_presensi.update');
         Route::delete('/presensi/{id}', [PresensiPegawaiController::class, 'delete'])->name('pegawai_presensi.delete');
+
+        // Pengajuan Cuti
+        Route::get('/cuti', [PengajuanCutiController::class, 'index'])->name('cuti.pegawai.index');
+        Route::get('/cuti/create', [PengajuanCutiController::class, 'create'])->name('cuti.pegawai.create');
+        Route::post('/cuti', [PengajuanCutiController::class, 'store'])->name('cuti.pegawai.store');
     });
 });
 
@@ -90,6 +103,11 @@ Route::middleware(['auth', 'role:kepsek'])->group(function () {
         Route::get('/pegawai/{id}/edit', [KepsekPegawaiController::class, 'edit'])->name('kepsek-pegawai.edit');
         Route::put('/pegawai/{id}', [KepsekPegawaiController::class, 'update'])->name('kepsek-pegawai.update');
         Route::delete('/pegawai/{id}', [KepsekPegawaiController::class, 'delete'])->name('kepsek-pegawai.delete');
+
+        // Cuti
+        Route::get('cuti', [KepsekCutiController::class, 'index'])->name('cuti.kepsek.index');
+        Route::post('cuti/{id}/persetujuan', [KepsekCutiController::class, 'persetujuan'])->name('cuti.kepsek.persetujuan');
+        Route::post('cuti/{id}/penolakan', [KepsekCutiController::class, 'penolakan'])->name('cuti.kepsek.penolakan');
     });
 });
 
