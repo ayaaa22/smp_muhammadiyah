@@ -39,7 +39,8 @@
                         $isActiveMaster =
                             request()->routeIs('jabatan.index') ||
                             request()->routeIs('pegawai.index') ||
-                            request()->routeIs('jenis-cuti.index');
+                            request()->routeIs('jenis-cuti.index') ||
+                            request()->routeIs('jenis-izin.index');
                     @endphp
 
                     @if ($role === 'admin')
@@ -82,6 +83,11 @@
                                     <a href="{{ route('jenis-cuti.index') }}">
                                         <i class="bi bi-circle"></i>
                                         Jenis Cuti</a>
+                                </li>
+                                <li class="submenu-item {{ request()->routeIs('jenis-izin.index') ? 'active' : '' }}">
+                                    <a href="{{ route('jenis-izin.index') }}">
+                                        <i class="bi bi-circle"></i>
+                                        Jenis Izin</a>
                                 </li>
                             </ul>
                         </li>
