@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\JabatanController;
 use App\Http\Controllers\Admin\JenisCutiController;
+use App\Http\Controllers\Admin\JenisIzinController;
 use App\Http\Controllers\Admin\PegawaiController;
 use App\Http\Controllers\Admin\PresensiController;
 use App\Http\Controllers\Admin\RekapKehadiranController;
@@ -66,6 +67,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/cuti', [AdminPengajuanCutiController::class, 'index'])->name('cuti.admin.index');
         Route::post('/cuti/{id}/validasi', [AdminPengajuanCutiController::class, 'validasi'])->name('cuti.admin.validasi');
         Route::post('/cuti/{id}/tolak', [AdminPengajuanCutiController::class, 'tolak'])->name('cuti.admin.tolak');
+
+        // Jenis Izin
+        Route::get('/jenis-izin', [JenisIzinController::class, 'index'])->name('jenis-izin.index');
+        Route::post('/jenis-izin/store', [JenisIzinController::class, 'store'])->name('jenis-izin.store');
+        Route::put('/jenis-izin/{id}', [JenisIzinController::class, 'update'])->name('jenis-izin.update');
+        Route::delete('/jenis-izin/{id}', [JenisIzinController::class, 'destroy'])->name('jenis-izin.destroy');
     });
 });
 
